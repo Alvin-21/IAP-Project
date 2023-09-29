@@ -47,7 +47,8 @@ class dbConnection{
         ksort($data);
         $fieldNames = implode('`, `',  array_keys($data));
         $fieldValues = implode("', '",  array_values($data));
-        "INSERT INTO $table (`$fieldNames`) VALUES ('$fieldValues')";
+        $sth = "INSERT INTO $table (`$fieldNames`) VALUES ('$fieldValues')";
+        $this->extracted($sth);
     }
 
     public function select($sql){
@@ -60,6 +61,30 @@ class dbConnection{
                 $result = $this->connection->prepare($sql);
                 $result->execute();
                 return $result->fetchAll(PDO::FETCH_ASSOC)[0];
+                break;
+        }
+    }
+
+    public function extracted(string $sth)
+    {
+        switch ($this->db_type) {
+            case 'MySQLi':
+                if ($this->connection->query($sth) === TRUE) {
+                    return TRUE;
+                } else {
+                    return "Error: " . $sth . "<br />" . $this->connection->error;
+                }
+                break;
+            case 'PDO':
+                try {
+                    // Prepare statement
+                    $stmt = $this->connection->prepare($sth);
+                    // execute the query
+                    $stmt->execute();
+                    return TRUE;
+                } catch (PDOException $e) {
+                    return $sth . "<br />" . $e->getMessage();
+                }
                 break;
         }
     }
