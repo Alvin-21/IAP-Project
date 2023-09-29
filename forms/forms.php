@@ -5,9 +5,9 @@ class forms
     public function user_details()
     {
 ?>
-        <div class="row align-items-md-stretch">
+        <div class="row align-items-md-stretch justify-content-center">
             <div class="col-md-6">
-                <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <div class="h-100 p-4 bg-body-tertiary border rounded-3">
                     <form action="" method="POST">
                         <div class="mb-3">
                             <label for="exampleInputEmail1">First Name</label>
