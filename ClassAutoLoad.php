@@ -11,5 +11,7 @@ function ClassAutoLoad($ClassName){
 }
 spl_autoload_register('ClassAutoLoad', true, true);
 
+$conn = New dbConnection("PDO","localhost","iap_project","root","","3306");
+
 $OBJ_Layout = NEW layouts();
 $OBJ_Forms = NEW forms();
