@@ -23,12 +23,13 @@ class contents
                     <?php
 
                     $i = 0;
+
                     while ($i < $count) {
-                        $f_name = $result['first_name'];
-                        $l_name = $result['last_name'];
-                        $email = $result['email_address'];
-                        $city = $result['city'];
-                        $country = $result['country'];
+                        $f_name = $result[$i]['first_name'];
+                        $l_name = $result[$i]['last_name'];
+                        $email = $result[$i]['email_address'];
+                        $city = $result[$i]['city'];
+                        $country = $result[$i]['country'];
                     ?>
 
                         <tr>

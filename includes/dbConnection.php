@@ -60,7 +60,7 @@ class dbConnection{
             case 'PDO':
                 $result = $this->connection->prepare($sql);
                 $result->execute();
-                return $result->fetchAll(PDO::FETCH_ASSOC)[0];
+                return $result->fetchAll();
                 break;
         }
     }
